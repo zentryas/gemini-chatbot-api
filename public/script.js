@@ -38,8 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageElement = document.getElementById(id);
     if (messageElement) {
       messageElement.classList.remove('thinking');
-      messageElement.innerHTML = ''; // Clear the dots
-      messageElement.textContent = newText;
+      
+      // Format response to handle bold and line breaks for better readability
+      const formattedText = newText
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+        
+      messageElement.innerHTML = formattedText;
     }
   };
 
